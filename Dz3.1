@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+int Fib(int a)
+{
+    if (a>2)
+    {
+        return Fib(a-1) + Fib(a-2);
+    }
+    else
+    {
+        return 1;
+    }
+    
+}
+
+int main()
+{
+    int a;
+    cout << "Введите номер числа Фибонначи: ";
+    cin >> a;
+    cout << "Искомое число: ";
+    cout << Fib(a);
+    
+
+    return 0;
+}
