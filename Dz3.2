@@ -1,0 +1,67 @@
+#include <iostream>
+
+using namespace std;
+
+int Sum(int a[], int begin, int mid, int end, int b[])
+{
+    int i = begin, j = mid;
+    for (int k = begin; k < end; k++)
+    {
+        if (i < mid && (j >= end || a[i] <= a[j]))
+        {
+            b[k] = a[i];
+            i++;
+        }
+        else
+        {
+            b[k] = a[j];
+            j++;
+        }
+    }
+}
+
+int Sl(int a[], int begin, int end, int b[])
+{
+    if (end - begin <= 1)
+    {
+        return 0;
+    }
+    int mid;
+    mid = (begin + end) / 2;
+    Sl(b, begin, mid, a);
+    Sl(b, mid, end, a);
+    Sum(b, begin, mid, end, a);
+
+}
+
+int Sort(int a[], int n)
+{
+    int b[n];
+    for (int i = 0; i < n; i++)
+    {
+        b[i] = a[i];
+    }
+
+    Sl(b, 0, n, a);
+    for (int i = 0; i < n; i++)
+    {
+        cout << b[i] << " ";
+    }
+}
+
+
+int main()
+{
+    cout << "Введите количество элементов массива: ";
+    int n;
+    cin >> n;
+    cout << "Введите массив: ";
+    int a[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+    cout << "Отсортированный массив: ";
+    Sort(a, n);
+    return 0;
+}
