@@ -1,0 +1,19 @@
+#include <iostream>
+#include <functional>
+#include <vector>
+using namespace std;
+
+void calculate(float a, float b, const function<float(float, float)>& t){
+ cout << t(a, b) << " ";
+}
+
+int main(){
+    float a, b;
+    cin >> a >> b;
+    vector <function<float(float, float)>> j;
+    j.push_back([](float a, float b) {return a + b;});
+    j.push_back([](float a, float b) {return a - b;});
+    j.push_back([](float a, float b) {return a * b;});
+    j.push_back([](float a, float b) {return a / b;});
+    for (int i=0; i<4; i++) calculate(a, b, j[i]);
+}
